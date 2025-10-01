@@ -1,0 +1,63 @@
+    1  pwd
+    2  ls
+    3  mkdir CS218
+    4  pwd
+    5  ls
+    6  cd CS218
+    7  mkdir Lab1
+    8  cs Lab1
+    9  cd Lab1
+   10  pwd
+   11  pwd>file1
+   12  ls
+   13  cat file1
+   14  ls -l
+   15  ls -l >> file1
+   16  LS
+   17  ls
+   18  cat file1
+   19  cowsay "Hello, Charlie Brown! I am Elias Najjar."
+   20  cowsay "Hello, Ranjita Pandey and Phyllis Lim! I am Elias Najjar."
+   21  cat file1
+   22  cowsay "Hello, Ranjita Pandey and Phyllis Lim! I am Elias Najjar." >> file1
+   23  cat file1
+   24  cowthink "Can I enjoy CS218?" >> file1
+   25  cat file1
+   26  yes "I will enjoy CS218!"
+   27  echo shell
+   28  echo $shell
+   29  echo $SHELL
+   30  curl -O https://www.cs.uky.edu/~yipike/CS218/testC++CompilerVersion.cpp
+   31  g++ testC++CompilerVersion.cpp -o testC++Compiler
+   32  ls
+   33  testC++Compiler
+   34  ./testC++Complier
+   35  ./testC++Compiler
+   36  ./testC++Compiler >> file1
+   37  cat file1
+   38  man ls
+   39  history > file2
+                                                 
+m     m        ""#                               
+#  #  #  mmm     #     mmm    mmm   mmmmm   mmm  
+" #"# # #"  #    #    #"  "  #" "#  # # #  #"  # 
+ ## ##" #""""    #    #      #   #  # # #  #"""" 
+ #   #  "#mm"    "mm  "#mm"  "#m#"  # # #  "#mm" 
+                                                 
+                                                 
+                            
+ mmmmm                #     
+ #    #  mmm    mmm   #   m 
+ #mmmm" "   #  #"  "  # m"  
+ #    # m"""#  #      #"#   
+ #mmmm" "mm"#  "#mm"  #  "m 
+                            
+                            
+                                                        
+m     m   "    ""#        #                  m          
+#  #  # mmm      #     mmm#   mmm    mmm   mm#mm   mmm  
+" #"# #   #      #    #" "#  #"  "  "   #    #    #   " 
+ ## ##"   #      #    #   #  #      m"""#    #     """m 
+ #   #  mm#mm    "mm  "#m##  "#mm"  "mm"#    "mm  "mmm" 
+                                                        
+                                                        

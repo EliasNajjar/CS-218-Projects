@@ -1,0 +1,9 @@
+tux.cow
+milk.cow
+flaming-sheep.cow
+fox.cow
+ghostbusters.cow
+gnu.cow
+kangaroo.cow
+koala.cow
+hellokitty.cow
