@@ -17,10 +17,13 @@ void PokerHand::setPokerHand(Card in_hand[], int size) {
         cout << "Invalid number of cards!" << endl;
         return;
     }
+
     for (int i = 0;i < HANDS;i++) {
-        cards[i] = in_hand[i];
+        cards[i] = in_hand[i]; // add cards to array
     }
     sort();
+
+    // the correct rank will set the value of hand_rank and return true
     if (isStraightFlush()) {}
     else if (isFourOfAKind()) {}
     else if (isFullHouse()) {}
@@ -44,27 +47,27 @@ void PokerHand::setPokerHand(Card in_hand[], int size) {
 // negative, zero or positive).
 //
 int PokerHand::compareHand(const PokerHand &otherHand) const {
-    if (hand_rank.kind == Rank::hRanks::NoRank) {
+    if (hand_rank.kind == Rank::hRanks::NoRank) { // invalid rank, other is greater
         return -1;
     }
     else if (otherHand.hand_rank.kind == Rank::hRanks::NoRank) {
         return 1;
     }
 
-    if (hand_rank.kind > otherHand.hand_rank.kind) {
+    if (hand_rank.kind > otherHand.hand_rank.kind) { // this rank is greater
         return 1;
     }
     else if (hand_rank.kind < otherHand.hand_rank.kind) {
         return -1;
     }
 
-    if (hand_rank.point > otherHand.hand_rank.point) {
+    if (hand_rank.point > otherHand.hand_rank.point) { // ranks are equal, check points
         return 1;
     }
     else if (hand_rank.point < otherHand.hand_rank.point) {
         return -1;
     }
-    return 0;
+    return 0; // tie
 }
 
 
@@ -74,10 +77,10 @@ int PokerHand::compareHand(const PokerHand &otherHand) const {
 // one card per line
 // then followed by "Its rank is: rank"
 void PokerHand::print() const {
-    for (int i = 0;i < HANDS - 1;i++) {
+    for (int i = 0;i < HANDS - 1;i++) { // print every card with tab except last
         cout << cards[i] << "\t";
     }
-    cout << cards[HANDS-1] << endl << "Its rank is: ";
+    cout << cards[HANDS-1] << endl << "Its rank is: "; // print last card, endl, then rank
     hand_rank.print();
 }
 
@@ -95,7 +98,7 @@ Rank PokerHand::getRank() const {
 //              and set the hand_rank (StraightFlush, highest point of the sequential five cards)
 // otherwise returns false
 bool PokerHand::isStraightFlush() {
-    if (isAllOneSuit() && isSequence()) {
+    if (isAllOneSuit() && isSequence()) { // straight flush if straight and flush
         hand_rank.kind = Rank::hRanks::StraightFlush;
         hand_rank.point = cards[0].point;
         return true;
@@ -107,7 +110,7 @@ bool PokerHand::isStraightFlush() {
 //              and set the hand_rank (FourOfAKind, highest point of the same four cards)
 // otherwise returns false
 bool PokerHand::isFourOfAKind() {
-    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point && cards[0].point == cards[3].point || cards[1].point == cards[2].point && cards[1].point == cards[3].point && cards[1].point == cards[4].point) {
+    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point && cards[0].point == cards[3].point || cards[1].point == cards[2].point && cards[1].point == cards[3].point && cards[1].point == cards[4].point) { // 2 ways for 4 of a kind with 5 cards
         hand_rank.kind = Rank::hRanks::FourOfAKind;
         hand_rank.point = cards[1].point;
         return true;
@@ -119,7 +122,7 @@ bool PokerHand::isFourOfAKind() {
 //              and set the hand_rank (FullHouse, highest point of the same three cards)
 // otherwise returns false
 bool PokerHand::isFullHouse() {
-    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point && cards[3].point == cards[4].point || cards[0].point == cards[1].point && cards[2].point == cards[3].point && cards[2].point == cards[4].point) {
+    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point && cards[3].point == cards[4].point || cards[0].point == cards[1].point && cards[2].point == cards[3].point && cards[2].point == cards[4].point) { // 2 ways for full house, 3 then 2 or 2 then 3
         hand_rank.kind = Rank::hRanks::FullHouse;
         hand_rank.point = cards[2].point;
         return true;
@@ -155,7 +158,7 @@ bool PokerHand::isStraight() {
 //              and set the hand_rank (ThreeOfAKind, highest point of the same three cards)
 // otherwise returns false
 bool PokerHand::isThreeOfAKind() {
-    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point || cards[1].point == cards[2].point && cards[1].point == cards[3].point || cards[2].point == cards[3].point && cards[2].point == cards[4].point) {
+    if (cards[0].point == cards[1].point && cards[0].point == cards[2].point || cards[1].point == cards[2].point && cards[1].point == cards[3].point || cards[2].point == cards[3].point && cards[2].point == cards[4].point) { // 3 ways for 3 of a kind
         hand_rank.kind = Rank::hRanks::ThreeOfAKind;
         hand_rank.point = cards[2].point;
         return true;
@@ -167,7 +170,7 @@ bool PokerHand::isThreeOfAKind() {
 //              and set the hand_rank (Pair, highest point of any pair)
 // otherwise returns false
 bool PokerHand::isPair() {
-    for (int i = 0;i < HANDS - 1;i++) {
+    for (int i = 0;i < HANDS - 1;i++) { // iterate through each pair to see if they have the same point
         if (cards[i].point == cards[i+1].point) {
             hand_rank.kind = Rank::hRanks::Pair;
             hand_rank.point = cards[i].point;
@@ -180,17 +183,17 @@ bool PokerHand::isPair() {
 // Returns true if the hand is a High Card
 //              and set the hand_rank (High Card, highest point of the five cards)
 // otherwise returns false
-bool PokerHand::isHighCard() {
+bool PokerHand::isHighCard() { // a hand will be high card if it is none of the other hands
     hand_rank.kind = Rank::hRanks::HighCard;
     hand_rank.point = cards[0].point;
     return true;
 }
 
 // to help sort the HANDS=5 cards in decreasing order by card points
-void PokerHand::sort() {
-    for (int i = 1;i < HANDS;i++) {
+void PokerHand::sort() { // selection sort
+    for (int i = 1;i < HANDS;i++) { // iterate through cards
         int j = i;
-        while (j > 0 && cards[j-1].point < cards[j].point) {
+        while (j > 0 && cards[j-1].point < cards[j].point) { // swap if greater, moving left
             Card temp = cards[j];
             cards[j] = cards[j-1];
             cards[j-1] = temp;
